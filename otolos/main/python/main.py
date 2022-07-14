@@ -20,3 +20,26 @@ class MainWindow(MainWindows)
         self.sentCentralWidget(self.otolos)
         
         self.status = QStatusBar()
+        
+        # Кнопки
+        navtb = QToolBar("Навигация")
+        navtb.setIconSize(QSize(18,18))
+        navtb.setAllowedAreas(Qt.TopToolBarArea)
+        navtb.setFloatable(False)
+        navtb.setMovable(False)
+        self.addToolBar(navtb)
+        
+         back_btn = QAction(QIcon(os.path.join('data/images', 'arrow-180.png')), "Back", self)
+        back_btn.setStatusTip("Вернутся на предыдущую страницу")
+        back_btn.triggered.connect(lambda: self.tabs.currentWidget().back())
+        navtb.addAction(back_btn)
+
+        next_btn = QAction(QIcon(os.path.join('data/images', 'arrow-000.png')), "Forward", self)
+        next_btn.setStatusTip("Перейти на следующую страницу")
+        next_btn.triggered.connect(lambda: self.tabs.currentWidget().forward())
+        navtb.addAction(next_btn)
+
+        reload_btn = QAction(QIcon(os.path.join('data/images', 'arrow-circle-315.png')), "reload", self)
+        reload_btn.setStatusTip("Перезагрузить страницу")
+        reload_btn.triggered.connect(lambda: self.tabs.currentWidget().reload())
+        navtb.addAction(reload_btn)
