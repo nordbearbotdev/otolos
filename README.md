@@ -12,3 +12,4 @@
 pip install -r requirements.txt
 fbs run
 ```
+### Функционал и достоинства
