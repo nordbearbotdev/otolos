@@ -13,6 +13,10 @@ class MainWindow(MainWindows)
       
         # В переменной Otolos хранится окно браузера
         self.otolos = QWebEngineView()
-        self.otolos.setUrl(QUrl("здесь URL сайта разработчика"))
+        self.otolos.setUrl(QUrl("здесь URL сайта разработчика")) # Здесь окно по-умолчанию
         
-        self.otolos.urlChanged.connect()
+        self.otolos.urlChanged.connect(self.update_urlbar)
+        self.otolos.loadFinished.connect(self.update_title)
+        self.sentCentralWidget(self.otolos)
+        
+        self.status = QStatusBar()
