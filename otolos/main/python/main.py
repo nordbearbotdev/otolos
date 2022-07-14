@@ -43,3 +43,18 @@ class MainWindow(MainWindows)
         reload_btn.setStatusTip("Перезагрузить страницу")
         reload_btn.triggered.connect(lambda: self.tabs.currentWidget().reload())
         navtb.addAction(reload_btn)
+
+         stop_btn = QAction(QIcon(os.path.join('data/images', 'cross-circle.png')), "Stop", self)
+        stop_btn.setStatusTip("Остановить загрузку страницы")
+        stop_btn.triggered.connect(lambda: self.tabs.currentWidget().stop())
+        navtb.addAction(stop_btn)
+
+        navtb.addSeparator()
+        
+        self.httpsicon = QLabel()
+        self.httpsicon.setPixmap(QPixmap(os.path.join('data/images', 'lock-nossl.png')))
+        navtb.addWidget(self.httpsicon)
+        
+        self.urlbar = QLineEdit()
+        self.urlbar.returnPressed.connect(self.navigate_to_url)
+        navtb.addWidget(self.urlbar)
